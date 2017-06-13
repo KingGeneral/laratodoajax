@@ -13,10 +13,27 @@ class CreateTasksTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('tasks');
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('task');
+            $table->string('description');
+            $table->boolean('done');
             $table->timestamps();
         });
+
+        //from class task create task 1
+        Task::create([
+            'task'          => 'Weekends',
+            'description'   => 'Holiday',
+            'done'          => false,
+        ]);
+
+        Task::create([
+            'task'          => 'Night Code',
+            'description'   => 'really night',
+            'done'          => false,
+        ]);
     }
 
     /**
